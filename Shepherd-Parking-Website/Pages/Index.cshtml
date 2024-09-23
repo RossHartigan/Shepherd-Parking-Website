@@ -7,10 +7,11 @@
 <h2>Current Car Count: <span id="carCountDisplay">Loading...</span></h2>
 
 @section Scripts {
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
+    <script type="module">
+        // Import necessary Firebase modules for version 9 and above
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-    <script>
         // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCt6Qx4jIHFfuF-pICv9UELAsp7PGLEBgc",
@@ -24,13 +25,13 @@
         };
 
         // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const database = firebase.database(app);
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
 
         // Function to get the carCount value from the Realtime Database
         function fetchCarCount() {
-            const dbRef = firebase.database().ref('carCount');
-            dbRef.on('value', (snapshot) => {
+            const dbRef = ref(database, 'carCount');
+            onValue(dbRef, (snapshot) => {
                 const carCount = snapshot.val();
                 document.getElementById('carCountDisplay').textContent = carCount;
             });
