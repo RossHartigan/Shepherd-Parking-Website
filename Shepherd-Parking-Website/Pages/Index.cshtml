@@ -1,20 +1,104 @@
-﻿@page 
+﻿@page
 @model IndexModel
 @{
     ViewData["Title"] = "Car Count Display";
 }
 
-<h2>Current Car Count: <span id="carCountDisplay">Loading...</span></h2>
-<h2>Max Car Count: <span id="maxCarCountDisplay">Loading...</span></h2>
-<h2>Projected Morning Cars: <span id="projectedMorningCarsDisplay">Loading...</span></h2>
-<h2>Projected Afternoon Cars: <span id="projectedAfternoonCarsDisplay">Loading...</span></h2>
+<!-- Main container for centering the content -->
+<div class="container">
+    <h1>Car Count Dashboard</h1>
+    <div class="stats">
+        <h2>Current Car Count: <span id="carCountDisplay">Loading...</span></h2>
+        <h2>Max Car Count: <span id="maxCarCountDisplay">Loading...</span></h2>
+        <h3>Projected Morning Cars: <span id="projectedMorningCarsDisplay">Loading...</span></h3>
+        <h3>Projected Afternoon Cars: <span id="projectedAfternoonCarsDisplay">Loading...</span></h3>
+    </div>
 
-<!-- Progress bar for car count -->
-<div>
-    <label for="carProgress">Car Count Progress:</label>
-    <progress id="carProgress" value="0" max="100"></progress>
-    <span id="progressPercentage">0%</span>
+    <!-- Progress bar section -->
+    <div class="progress-section">
+        <label for="carProgress">Car Count Progress:</label>
+        <progress id="carProgress" value="0" max="100"></progress>
+        <span id="progressPercentage">0%</span>
+    </div>
 </div>
+
+<!-- Styles to improve the page appearance -->
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .stats h2, .stats h3 {
+        font-size: 1.5em;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .progress-section {
+        margin-top: 20px;
+    }
+
+    label {
+        font-size: 1.2em;
+        color: #333;
+    }
+
+    progress {
+        width: 100%;
+        height: 30px;
+        margin-top: 10px;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    progress::-webkit-progress-bar {
+        background-color: #f3f3f3;
+        border-radius: 5px;
+    }
+
+    progress::-webkit-progress-value {
+        background-color: #4CAF50;
+        border-radius: 5px;
+    }
+
+    span#progressPercentage {
+        display: block;
+        font-size: 1.2em;
+        color: #333;
+        margin-top: 5px;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 0.9em;
+        color: #777;
+    }
+
+    footer a {
+        color: #4CAF50;
+        text-decoration: none;
+    }
+</style>
 
 @section Scripts {
     <script type="module">
@@ -72,3 +156,8 @@
         };
     </script>
 }
+
+<!-- Footer for copyright and link -->
+<footer>
+    © 2024 - Shepherd_Parking_Website - <a href="#">Privacy</a>
+</footer>
