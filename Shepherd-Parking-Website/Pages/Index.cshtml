@@ -1,9 +1,44 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Car Count Display";
 }
 
-<div class="text-center">
-    <h1 class="display-4">PDiddy is my dad</h1>
-</div>
+<h2>Current Car Count: <span id="carCountDisplay">Loading...</span></h2>
+
+@section Scripts {
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCt6Qx4jIHFfuF-pICv9UELAsp7PGLEBgc",
+            authDomain: "shepherd-9a70b.firebaseapp.com",
+            databaseURL: "https://shepherd-9a70b-default-rtdb.firebaseio.com",
+            projectId: "shepherd-9a70b",
+            storageBucket: "shepherd-9a70b.appspot.com",
+            messagingSenderId: "752353533147",
+            appId: "1:752353533147:web:94b11bb6cbcb6c239280fe",
+            measurementId: "G-M0NX64WE41"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database(app);
+
+        // Function to get the carCount value from the Realtime Database
+        function fetchCarCount() {
+            const dbRef = firebase.database().ref('carCount');
+            dbRef.on('value', (snapshot) => {
+                const carCount = snapshot.val();
+                document.getElementById('carCountDisplay').textContent = carCount;
+            });
+        }
+
+        // Fetch the car count when the page loads
+        window.onload = function() {
+            fetchCarCount();
+        };
+    </script>
+}
