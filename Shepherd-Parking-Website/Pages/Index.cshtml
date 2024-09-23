@@ -1,10 +1,20 @@
-﻿@page
+﻿@page 
 @model IndexModel
 @{
     ViewData["Title"] = "Car Count Display";
 }
 
 <h2>Current Car Count: <span id="carCountDisplay">Loading...</span></h2>
+<h2>Max Car Count: <span id="maxCarCountDisplay">Loading...</span></h2>
+<h2>Projected Morning Cars: <span id="projectedMorningCarsDisplay">Loading...</span></h2>
+<h2>Projected Afternoon Cars: <span id="projectedAfternoonCarsDisplay">Loading...</span></h2>
+
+<!-- Progress bar for car count -->
+<div>
+    <label for="carProgress">Car Count Progress:</label>
+    <progress id="carProgress" value="0" max="100"></progress>
+    <span id="progressPercentage">0%</span>
+</div>
 
 @section Scripts {
     <script type="module">
@@ -28,18 +38,37 @@
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
-        // Function to get the carCount value from the Realtime Database
-        function fetchCarCount() {
-            const dbRef = ref(database, 'carCount');
+        // Function to fetch data from the Realtime Database
+        function fetchData() {
+            const dbRef = ref(database);
             onValue(dbRef, (snapshot) => {
-                const carCount = snapshot.val();
+                const data = snapshot.val();
+
+                // Update the basic stats on the page
+                const carCount = data.carCount || 0;
+                const maxCarCount = data.maxCarCount || 100; // Default max to 100 if not present
+
                 document.getElementById('carCountDisplay').textContent = carCount;
+                document.getElementById('maxCarCountDisplay').textContent = maxCarCount;
+                document.getElementById('projectedMorningCarsDisplay').textContent = data.projectedMorningCars || 'No cars booked';
+                document.getElementById('projectedAfternoonCarsDisplay').textContent = data.projectedAfternoonCars || 'No cars booked';
+
+                // Update the progress bar
+                const progress = document.getElementById('carProgress');
+                const progressPercentage = document.getElementById('progressPercentage');
+                
+                progress.max = maxCarCount;
+                progress.value = carCount;
+
+                // Calculate and display percentage
+                const percentage = ((carCount / maxCarCount) * 100).toFixed(2);
+                progressPercentage.textContent = `${percentage}%`;
             });
         }
 
-        // Fetch the car count when the page loads
+        // Fetch data when the page loads
         window.onload = function() {
-            fetchCarCount();
+            fetchData();
         };
     </script>
 }
