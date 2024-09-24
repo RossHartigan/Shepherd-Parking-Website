@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/rosshartigan/Folders/Shepherd-Parking-Website/Shepherd-Parking-Website/Shepherd-Parking-Website
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/rosshartigan/Folders/Shepherd-Parking-Website/Shepherd-Parking-Website/Shepherd-Parking-Website/Pages/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/rosshartigan/Folders/Shepherd-Parking-Website/Shepherd-Parking-Website/Shepherd-Parking-Website/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

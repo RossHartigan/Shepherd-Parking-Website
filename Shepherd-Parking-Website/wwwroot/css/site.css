@@ -20,109 +20,169 @@ html {
 body {
   margin-bottom: 60px;
 }
-/* Global Styles */
-body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #C8E6E6;
-  color: #333;
+
+/*Index page */
+
+/* Header styling for navigation */
+.main-header {
+  background-color: #333;
+  padding: 10px;
+  text-align: center;
 }
 
-h1, h2, h3, p {
+.main-header nav ul {
+  list-style: none;
   margin: 0;
   padding: 0;
-}
-
-header {
-  background-color: #FFFFFF;
-  padding: 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  justify-content: center;
+  gap: 20px;
 }
 
-.logo img {
-  height: 50px;
+.main-header nav ul li {
+  display: inline;
 }
 
-.menu a {
+.main-header nav ul li a {
+  color: white;
   text-decoration: none;
-  color: #333;
-  margin: 0 15px;
-  font-weight: 500;
+  font-size: 1.2em;
 }
 
-.hero {
+.main-header nav ul li a:hover {
+  text-decoration: underline;
+}
+
+
+/* dashboard css Ross */
+
+.dashboard {
+  padding: 20px;
+}
+
+.dashboard h1{
+  text-align: left;
+  padding-left: 15%;
+  color: black;
+}
+
+.parking-capacity-container h2 {
+  margin: 0;
   text-align: center;
-  margin-top: 50px;
+  color: #A8E2D0;
+  position: relative;
+  top: 0;
+  padding-bottom: 20%; 
+  padding-top: 5%;
 }
 
-.hero-icon {
-  height: 100px;
+.parking-capacity-container {
+  position: absolute;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: flex-start;
+  width: 33%;
+  height: 75%;
+  padding: 20px;
+  background-color: rgb(54, 53, 53);
+  bottom: 10%;
+  left: 25%;
+  border-radius: 10%;
 }
 
-h1 {
-  font-size: 2.5rem;
-  margin-top: 20px;
-}
-
-.availability {
-  text-align: center;
-  margin-top: 30px;
-}
-
-.availability h2 {
-  font-size: 1.5rem;
-  color: #333;
-}
-
-.progress-bar {
-  width: 80%;
-  height: 30px;
-  background-color: #ddd;
-  margin: 10px auto;
-  border-radius: 5px;
-  overflow: hidden;
+.parking-capacity-chart {
   position: relative;
 }
 
-.filled {
+.capacity-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+  color: white;
+}
+
+.car-count-details {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.car-count-details h3 {
+  margin: 5px 0;
+  font-size: 1.2em;
+  font-weight: normal;
+  color: #A8E2D0;
+}
+
+#morningCars, #afternoonCars {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+}
+
+/*Dashboard sidebar*/
+
+.sidebar {
+  width: 17%;
   height: 100%;
-  background-color: #4CAF50;
-}
-
-.features {
+  background-color: #333;
+  color: white;
   display: flex;
-  justify-content: space-around;
-  margin-top: 40px;
-  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 
-.feature {
+/* Logo Section */
+.logo-container {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 2%;
+}
+
+.logo {
+  width: 33%;
+  height: auto;
+  margin-bottom: 10%;
+  border-radius: 10%;
+}
+
+.app-name {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Navigation Links */
+.nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   text-align: center;
 }
 
-.feature img {
-  height: 60px;
-  margin-bottom: 10px;
+.nav-link {
+  display: flex;       
+  align-items: center;   
+  padding: 15px 0;
+  width: 100%;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  padding-left: 20px;     
 }
 
-h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+.nav-link i {
+  margin-right: 10px;    
+  font-size: 2em; 
 }
 
-p {
-  font-size: 0.9rem;
-  color: #555;
+.nav-link:hover {
+  background-color: #A8E2D0;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #FFFFFF;
-  margin-top: 50px;
-  box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
-}

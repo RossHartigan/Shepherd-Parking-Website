@@ -1,0 +1,181 @@
+@page
+@model Pages_Dashboard
+@{
+    ViewData["Title"] = "Parking Dashboard";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>@ViewData["Title"] - Shepherd Parking</title>
+</head>
+
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+    <div class="logo-container">
+        <img src="/images/sheep.png" alt="Shepherd Parking Logo" class="logo">
+        <h1 class="app-name">Shepherd Parking</h1>
+    </div>
+
+    <nav class="nav">
+        <a href="/Dashboard" class="nav-link">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
+        </a>
+        <a href="/About" class="nav-link">
+            <i class="fas fa-info-circle"></i> About Us
+        </a>
+        <a href="/Index" class="nav-link">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+    </nav>
+</div>
+
+<div class="dashboard">
+
+    <h1>Dashboard</h1>
+
+    <div class="parking-capacity-container">
+        <h2>Current Car Capacity</h2>
+        <div class="parking-capacity-chart">
+            <canvas id="parkingCapacityChart" width="200" height="200"></canvas>
+            <div class="capacity-text">
+                <span id="capacityPercentage">Loading...</span>
+            </div>
+        </div>
+
+        <div class="car-count-details">
+            <div class="morning-count">
+                <h3>Projected Morning Cars</h3>
+                <span id="morningCars">Loading...</span>
+            </div>
+            <div class="afternoon-count">
+                <h3>Projected Afternoon Cars</h3>
+                <span id="afternoonCars">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="module">
+        // Import firebase-init to use the initialized Firebase instance
+        import { realTimeDb } from '/js/firebase-init.js';
+        import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+
+        // Function to update the UI with data from Firebase
+        function updateUI(data) {
+            const carCount = data.carCount || 0;
+            const maxCarCount = data.maxCarCount || 100;
+            const morningCars = data.projectedMorningCars || 0;
+            const afternoonCars = data.projectedAfternoonCars || 0;
+
+            // Update projected cars
+            
+
+            // Update circular chart
+            const percentage = (carCount / maxCarCount) * 100;
+            updateParkingChart(percentage, morningCars, afternoonCars);
+            document.getElementById('capacityPercentage').textContent = `${percentage}%`;
+        }
+
+    // Function to draw the donut chart
+    function updateParkingChart(finalPercentage, finalMorningCars, finalAfternoonCars) {
+        const canvas = document.getElementById('parkingCapacityChart');
+        const ctx = canvas.getContext('2d');
+        const radius = canvas.width / 2;
+        const lineWidth = 20;
+        let currentPercentage = 0;
+        let currentMorningCount = 0;
+        let currentAfternoonCount = 0;
+
+        // Define the speed of the animation
+        const incrementPercentage = 0.69;
+        const incrementMorningCars = 0.15;
+        const incrementAfternoonCars = 0.15;
+        const animationDelay = 10;
+
+        // Animation loop function
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Background circle (gray)
+            ctx.beginPath();
+            ctx.arc(radius, radius, radius - lineWidth / 2, 0, Math.PI * 2);
+            ctx.strokeStyle = '#D3D3D3';
+            ctx.lineWidth = lineWidth;
+            ctx.stroke();
+
+            // Determine circle color based on percentage
+            let circleColour;
+            switch (true) {
+                case (currentPercentage >= 90):
+                    circleColour = "red";
+                    break;
+                case (currentPercentage >= 75):
+                    circleColour = "orange";
+                    break;
+                case (currentPercentage >= 50):
+                    circleColour = "yellow";
+                    break;
+                default:
+                    circleColour = "#A8E2D0";
+                    break;
+            }
+
+            // Foreground circle (color based on percentage)
+            ctx.beginPath();
+            const endAngle = (Math.PI * 2 * (currentPercentage / 100)) - Math.PI / 2;
+            ctx.arc(radius, radius, radius - lineWidth / 2, -Math.PI / 2, endAngle);
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = circleColour;
+            ctx.lineWidth = lineWidth;
+            ctx.stroke();
+
+            // Update percentage text inside the circle
+            document.getElementById('capacityPercentage').textContent = `${Math.round(currentPercentage)}%`;
+            document.getElementById('morningCars').textContent = Math.round(currentMorningCount);
+            document.getElementById('afternoonCars').textContent = Math.round(currentAfternoonCount);
+
+            // Increment values - Animate
+            if (currentPercentage < finalPercentage) {
+                currentPercentage += incrementPercentage;
+            }
+
+            if (currentMorningCount < finalMorningCars) {
+                currentMorningCount += incrementMorningCars;
+            }
+
+            if (currentAfternoonCount < finalAfternoonCars) {
+                currentAfternoonCount += incrementAfternoonCars;
+            }
+
+            // Continue the animation with a small delay between frames
+            if (currentPercentage < finalPercentage || currentMorningCount < finalMorningCars || currentAfternoonCount < finalAfternoonCars) {
+                setTimeout(() => {
+                    requestAnimationFrame(animate);
+                }, animationDelay);
+            }
+        }
+
+        // Start the animation
+        requestAnimationFrame(animate);
+    }
+
+    // Fetch parking data from Firebase when the page loads
+    function fetchParkingData() {
+        const dbRef = ref(realTimeDb);
+        onValue(dbRef, (snapshot) => {
+            const data = snapshot.val();
+            updateUI(data);
+        });
+    }
+
+    // Fetch data on page load
+    window.onload = function () {
+        fetchParkingData();
+    };
+    
+</script>
+}
