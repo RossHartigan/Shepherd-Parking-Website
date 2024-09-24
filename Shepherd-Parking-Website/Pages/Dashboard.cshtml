@@ -64,118 +64,127 @@
         import { realTimeDb } from '/js/firebase-init.js';
         import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-        // Function to update the UI with data from Firebase
         function updateUI(data) {
-            const carCount = data.carCount || 0;
-            const maxCarCount = data.maxCarCount || 100;
-            const morningCars = data.projectedMorningCars || 0;
-            const afternoonCars = data.projectedAfternoonCars || 0;
-
-            // Update projected cars
-            
-
-            // Update circular chart
-            const percentage = (carCount / maxCarCount) * 100;
-            updateParkingChart(percentage, morningCars, afternoonCars);
-            document.getElementById('capacityPercentage').textContent = `${percentage}%`;
-        }
-
-    // Function to draw the donut chart
-    function updateParkingChart(finalPercentage, finalMorningCars, finalAfternoonCars) {
-        const canvas = document.getElementById('parkingCapacityChart');
-        const ctx = canvas.getContext('2d');
-        const radius = canvas.width / 2;
-        const lineWidth = 20;
-        let currentPercentage = 0;
-        let currentMorningCount = 0;
-        let currentAfternoonCount = 0;
-
-        // Define the speed of the animation
-        const incrementPercentage = 0.69;
-        const incrementMorningCars = 0.15;
-        const incrementAfternoonCars = 0.15;
-        const animationDelay = 10;
-
-        // Animation loop function
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Background circle (gray)
-            ctx.beginPath();
-            ctx.arc(radius, radius, radius - lineWidth / 2, 0, Math.PI * 2);
-            ctx.strokeStyle = '#D3D3D3';
-            ctx.lineWidth = lineWidth;
-            ctx.stroke();
-
-            // Determine circle color based on percentage
-            let circleColour;
-            switch (true) {
-                case (currentPercentage >= 90):
-                    circleColour = "red";
-                    break;
-                case (currentPercentage >= 75):
-                    circleColour = "orange";
-                    break;
-                case (currentPercentage >= 50):
-                    circleColour = "yellow";
-                    break;
-                default:
-                    circleColour = "#A8E2D0";
-                    break;
-            }
-
-            // Foreground circle (color based on percentage)
-            ctx.beginPath();
-            const endAngle = (Math.PI * 2 * (currentPercentage / 100)) - Math.PI / 2;
-            ctx.arc(radius, radius, radius - lineWidth / 2, -Math.PI / 2, endAngle);
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = circleColour;
-            ctx.lineWidth = lineWidth;
-            ctx.stroke();
-
-            // Update percentage text inside the circle
-            document.getElementById('capacityPercentage').textContent = `${Math.round(currentPercentage)}%`;
-            document.getElementById('morningCars').textContent = Math.round(currentMorningCount);
-            document.getElementById('afternoonCars').textContent = Math.round(currentAfternoonCount);
-
-            // Increment values - Animate
-            if (currentPercentage < finalPercentage) {
-                currentPercentage += incrementPercentage;
-            }
-
-            if (currentMorningCount < finalMorningCars) {
-                currentMorningCount += incrementMorningCars;
-            }
-
-            if (currentAfternoonCount < finalAfternoonCars) {
-                currentAfternoonCount += incrementAfternoonCars;
-            }
-
-            // Continue the animation with a small delay between frames
-            if (currentPercentage < finalPercentage || currentMorningCount < finalMorningCars || currentAfternoonCount < finalAfternoonCars) {
-                setTimeout(() => {
-                    requestAnimationFrame(animate);
-                }, animationDelay);
-            }
-        }
-
-        // Start the animation
-        requestAnimationFrame(animate);
-    }
-
-    // Fetch parking data from Firebase when the page loads
-    function fetchParkingData() {
-        const dbRef = ref(realTimeDb);
-        onValue(dbRef, (snapshot) => {
-            const data = snapshot.val();
-            updateUI(data);
-        });
-    }
-
-    // Fetch data on page load
-    window.onload = function () {
-        fetchParkingData();
-    };
+    const carCount = data.carCount || 0;
+    const maxCarCount = data.maxCarCount || 100;
+    const morningCars = data.projectedMorningCars || 0;
+    const afternoonCars = data.projectedAfternoonCars || 0;
     
-</script>
+    // Calculate the percentage
+    let percentage = (carCount / maxCarCount) * 100;
+
+    // Ensure that percentage is exactly 100 when carCount equals maxCarCount
+    if (carCount >= maxCarCount) {
+        percentage = 100;
+    }
+
+    // Update the circular chart
+    updateParkingChart(percentage, morningCars, afternoonCars);
+    document.getElementById('capacityPercentage').textContent = `${Math.round(percentage)}%`;
+}
+
+function updateParkingChart(finalPercentage, finalMorningCars, finalAfternoonCars) {
+    const canvas = document.getElementById('parkingCapacityChart');
+    const ctx = canvas.getContext('2d');
+    const radius = canvas.width / 2;
+    const lineWidth = 20;
+    let currentPercentage = 0;
+    let currentMorningCount = 0;
+    let currentAfternoonCount = 0;
+
+    // Define the speed of the animation
+    const incrementPercentage = 0.69;
+    const incrementMorningCars = 0.15;
+    const incrementAfternoonCars = 0.15;
+    const animationDelay = 10;
+
+    // Animation loop function
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Background circle (gray)
+        ctx.beginPath();
+        ctx.arc(radius, radius, radius - lineWidth / 2, 0, Math.PI * 2);
+        ctx.strokeStyle = '#D3D3D3';
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+
+        // Determine circle color based on percentage
+        let circleColour;
+        switch (true) {
+            case (currentPercentage >= 90):
+                circleColour = "red";
+                break;
+            case (currentPercentage >= 75):
+                circleColour = "orange";
+                break;
+            case (currentPercentage >= 50):
+                circleColour = "yellow";
+                break;
+            default:
+                circleColour = "#A8E2D0";
+                break;
+        }
+
+        // Foreground circle (color based on percentage)
+        ctx.beginPath();
+        const endAngle = (Math.PI * 2 * (currentPercentage / 100)) - Math.PI / 2;
+        ctx.arc(radius, radius, radius - lineWidth / 2, -Math.PI / 2, endAngle);
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = circleColour;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+
+        // Increment values - Animate
+        if (currentPercentage < finalPercentage) {
+            currentPercentage += incrementPercentage;
+        } else {
+            currentPercentage = finalPercentage;  // Ensure it reaches the final value
+        }
+
+        if (currentMorningCount < finalMorningCars) {
+            currentMorningCount += incrementMorningCars;
+        } else {
+            currentMorningCount = finalMorningCars;  // Ensure it reaches the final value
+        }
+
+        if (currentAfternoonCount < finalAfternoonCars) {
+            currentAfternoonCount += incrementAfternoonCars;
+        } else {
+            currentAfternoonCount = finalAfternoonCars;  // Ensure it reaches the final value
+        }
+
+        // Continue the animation with a small delay between frames
+        if (currentPercentage < finalPercentage || currentMorningCount < finalMorningCars || currentAfternoonCount < finalAfternoonCars) {
+            setTimeout(() => {
+                requestAnimationFrame(animate);
+            }, animationDelay);
+        }
+
+        // Update percentage text inside the circle
+        document.getElementById('capacityPercentage').textContent = `${Math.round(currentPercentage)}%`;
+        document.getElementById('morningCars').textContent = Math.round(currentMorningCount);
+        document.getElementById('afternoonCars').textContent = Math.round(currentAfternoonCount);
+    }
+
+    // Start the animation
+    requestAnimationFrame(animate);
+}
+
+
+        // Fetch parking data from Firebase when the page loads
+        function fetchParkingData() {
+            const dbRef = ref(realTimeDb);
+            onValue(dbRef, (snapshot) => {
+                const data = snapshot.val();
+                updateUI(data);
+            });
+        }
+
+        // Fetch data on page load
+        window.onload = function () {
+            fetchParkingData();
+        };
+
+    </script>
 }
