@@ -11,7 +11,6 @@
     <title>@ViewData["Title"] - Shepherd Parking</title>
 </head>
 
-
 <!-- Sidebar -->
 <div class="sidebar" id="sidebar">
     <div class="logo-container">
@@ -21,42 +20,70 @@
 
     <nav class="nav">
         <a href="/Dashboard" class="nav-link">
-            <i class="fas fa-tachometer-alt"></i> Dashboard
+            <i class="fas fa-tachometer-alt"></i> <p id="dashboard">Dashboard</p>
         </a>
         <a href="/About" class="nav-link">
-            <i class="fas fa-info-circle"></i> About Us
+            <i class="fas fa-info-circle"></i> <p id="aboutus">About Us</p>
         </a>
         <a href="/Index" class="nav-link">
-            <i class="fas fa-sign-out-alt"></i> Logout
+            <i class="fas fa-sign-out-alt"></i> <p id="logout">Logout</p>
         </a>
     </nav>
 </div>
 
 <div class="dashboard">
+  <h1>Dashboard</h1>
 
-    <h1>Dashboard</h1>
+  <div class="dashboard-content">
+    <!-- Graph Placeholder -->
+    <div class="graph-container">
+      <h2>Graph Placeholder</h2>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+    </div>
 
-    <div class="parking-capacity-container">
+    <!-- Map Placeholder -->
+    <div class="map-container">
+      <h2>Map Placeholder</h2>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+    </div>
+
+    <!-- Car Count Placeholder -->
+    <div class="car-count-container">
+      <div class="parking-capacity-container">
         <h2>Capacity</h2>
-        <div class="parking-capacity-chart">
-            <canvas id="parkingCapacityChart" width="200" height="200"></canvas>
-            <div class="capacity-text">
-                <span id="capacityPercentage">Loading...</span>
-            </div>
-        </div>
+        <span id="capacityPercentage">75%</span>
+        <canvas id="parkingCapacityChart" width="200" height="200"></canvas>
 
         <div class="car-count-details">
-            <div class="morning-count">
-                <h3>Projected Morning Cars</h3>
-                <span id="morningCars">Loading...</span>
-            </div>
-            <div class="afternoon-count">
-                <h3>Projected Afternoon Cars</h3>
-                <span id="afternoonCars">Loading...</span>
-            </div>
+          <div class="morning-count">
+            <h3>Projected Morning Cars</h3>
+            <span id="morningCars">0</span>
+          </div>
+          <div class="afternoon-count">
+            <h3>Projected Afternoon Cars</h3>
+            <span id="afternoonCars">1</span>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+
 
 @section Scripts {
     <script type="module">
