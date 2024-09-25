@@ -101,7 +101,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 2rem; /* Responsive font size */
+  font-size: 2rem;
   color: black;
   font-weight: lighter;
 }

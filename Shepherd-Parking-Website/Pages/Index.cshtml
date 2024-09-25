@@ -8,83 +8,8 @@
 <header class="main-header">
     <nav>
         <ul>
-            <li><a href="/Index">Home</a></li>
             <li><a href="/Dashboard">Dashboard</a></li>
         </ul>
     </nav>
 </header>
 
-<!-- Main container for centering the content -->
-<div class="container">
-    <h1>Car Count Dashboard</h1>
-    <div class="stats">
-        <h2>Current Car Count: <span id="carCountDisplay">Loading...</span></h2>
-        <h2>Max Car Count: <span id="maxCarCountDisplay">Loading...</span></h2>
-        <h3>Projected Morning Cars: <span id="projectedMorningCarsDisplay">Loading...</span></h3>
-        <h3>Projected Afternoon Cars: <span id="projectedAfternoonCarsDisplay">Loading...</span></h3>
-    </div>
-
-    <!-- Progress bar section -->
-    <div class="progress-section">
-        <label for="carProgress">Car Count Progress:</label>
-        <progress id="carProgress" value="0" max="100"></progress>
-        <span id="progressPercentage">0%</span>
-    </div>
-</div>
-
-@section Scripts {
-    <script type="module">
-
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
-
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "your-api-key",
-            authDomain: "your-auth-domain",
-            databaseURL: "your-database-url",
-            projectId: "your-project-id",
-            storageBucket: "your-storage-bucket",
-            messagingSenderId: "your-messaging-sender-id",
-            appId: "your-app-id",
-            measurementId: "your-measurement-id"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-
-        // Function to fetch data from the Realtime Database
-        function fetchData() {
-            const dbRef = ref(database);
-            onValue(dbRef, (snapshot) => {
-                const data = snapshot.val();
-
-                // Update the basic stats on the page
-                const carCount = data.carCount || 0;
-                const maxCarCount = data.maxCarCount || 100;
-
-                document.getElementById('carCountDisplay').textContent = carCount;
-                document.getElementById('maxCarCountDisplay').textContent = maxCarCount;
-                document.getElementById('projectedMorningCarsDisplay').textContent = data.projectedMorningCars || 'No cars booked';
-                document.getElementById('projectedAfternoonCarsDisplay').textContent = data.projectedAfternoonCars || 'No cars booked';
-
-                // Update the progress bar
-                const progress = document.getElementById('carProgress');
-                const progressPercentage = document.getElementById('progressPercentage');
-
-                progress.max = maxCarCount;
-                progress.value = carCount;
-
-                // Calculate and display percentage
-                const percentage = ((carCount / maxCarCount) * 100).toFixed(2);
-                progressPercentage.textContent = `${percentage}%`;
-            });
-        }
-
-        // Fetch data when the page loads
-        window.onload = function () {
-            fetchData();
-        };
-    </script>
-}
