@@ -20,6 +20,13 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// Map the default root URL "/" to the login page
+app.MapGet("/", async (context) => 
+{
+    context.Response.Redirect("/Login");
+});
+
+// Map Razor Pages
 app.MapRazorPages();
 
 app.Run();
