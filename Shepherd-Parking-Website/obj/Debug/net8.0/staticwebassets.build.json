@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8oKuAfq1oaq0OSnK54W1IpSZa7n+Em2Xa4WSaxuJFwQ=",
+  "Hash": "Z80PmTjrfgUhblXFRB55HXmDXgyj3t55HM+1tjkhIuA=",
   "Source": "Shepherd-Parking-Website",
   "BasePath": "_content/Shepherd-Parking-Website",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/Users/rosshartigan/Folders/Shepherd-Parking-Website/Shepherd-Parking-Website/Shepherd-Parking-Website/wwwroot/images/dashboard.png",
+      "SourceId": "Shepherd-Parking-Website",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/rosshartigan/Folders/Shepherd-Parking-Website/Shepherd-Parking-Website/Shepherd-Parking-Website/wwwroot/",
+      "BasePath": "_content/Shepherd-Parking-Website",
+      "RelativePath": "images/dashboard.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/dashboard.png"
     },
     {
       "Identity": "/Users/rosshartigan/Folders/Shepherd-Parking-Website/Shepherd-Parking-Website/Shepherd-Parking-Website/wwwroot/images/sheep.png",
