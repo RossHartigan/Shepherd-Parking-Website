@@ -13,6 +13,18 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/Users/rosshartigan/Folders/Shepherd-Parking-Website/Shepherd-Parking-Website/Shepherd-Parking-Website/wwwroot/images/dashboard.png",
+      "PackagePath": "staticwebassets/images/dashboard.png"
+    },
+    {
+      "Id": "/Users/rosshartigan/Folders/Shepherd-Parking-Website/Shepherd-Parking-Website/Shepherd-Parking-Website/wwwroot/images/sheep.png",
+      "PackagePath": "staticwebassets/images/sheep.png"
+    },
+    {
+      "Id": "/Users/rosshartigan/Folders/Shepherd-Parking-Website/Shepherd-Parking-Website/Shepherd-Parking-Website/wwwroot/js/firebase-init.js",
+      "PackagePath": "staticwebassets/js/firebase-init.js"
+    },
+    {
       "Id": "/Users/rosshartigan/Folders/Shepherd-Parking-Website/Shepherd-Parking-Website/Shepherd-Parking-Website/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },
