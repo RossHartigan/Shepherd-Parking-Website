@@ -20,68 +20,64 @@
 
     <nav class="nav">
         <a href="/Dashboard" class="nav-link">
-            <i class="fas fa-tachometer-alt"></i> <p id="dashboard">Dashboard</p>
+            <i class="fas fa-tachometer-alt"></i>
+            <p id="dashboard">Dashboard</p>
         </a>
         <a href="/About" class="nav-link">
-            <i class="fas fa-info-circle"></i> <p id="aboutus">About Us</p>
+            <i class="fas fa-info-circle"></i>
+            <p id="aboutus">About Us</p>
         </a>
         <a href="/Index" class="nav-link">
-            <i class="fas fa-sign-out-alt"></i> <p id="logout">Logout</p>
+            <i class="fas fa-sign-out-alt"></i>
+            <p id="logout">Logout</p>
         </a>
     </nav>
 </div>
 
 <div class="dashboard">
-  <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
 
-  <div class="dashboard-content">
-    <!-- Graph Placeholder -->
-    <div class="graph-container">
-      <h2>Graph Placeholder</h2>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-    </div>
-
-    <!-- Map Placeholder -->
-    <div class="map-container">
-      <h2>Map Placeholder</h2>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-    </div>
-
-    <!-- Car Count Placeholder -->
-    <div class="car-count-container">
-      <div class="parking-capacity-container">
-        <h2>Capacity</h2>
-        <span id="capacityPercentage">75%</span>
-        <canvas id="parkingCapacityChart" width="200" height="200"></canvas>
-
-        <div class="car-count-details">
-          <div class="morning-count">
-            <h3>Projected Morning Cars</h3>
-            <span id="morningCars">0</span>
-          </div>
-          <div class="afternoon-count">
-            <h3>Projected Afternoon Cars</h3>
-            <span id="afternoonCars">1</span>
-          </div>
+    <div class="dashboard-content">
+        <!-- Graph Placeholder -->
+        <div class="graph-container">
+            <h2>Graph Placeholder</h2>
+            <br />
+            <br />
+            <br />
         </div>
-      </div>
+
+        <!-- Map Placeholder -->
+        <div class="map-container">
+            <h2>Map Placeholder</h2>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+
+        <!-- Car Count Placeholder -->
+        <div class="car-count-container">
+            <div class="parking-capacity-container">
+                <h2 id="capacity-text">Capacity</h2>
+                <span id="capacityPercentage">Loading ...</span>
+                <canvas id="parkingCapacityChart" width="200" height="200"></canvas>
+
+                <div class="car-count-details">
+                    <div class="morning-count">
+                        <h3>Projected Morning Cars</h3>
+                        <span id="morningCars"><p id="morningCarText">Loading ...</p></span>
+                    </div>
+                    <div class="afternoon-count">
+                        <h3>Projected Afternoon Cars</h3>
+                        <span id="afternoonCars"><p id="afternoonCarText">Loading ...</p></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 
@@ -91,12 +87,12 @@
         import { realTimeDb } from '/js/firebase-init.js';
         import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-        function updateUI(data) {   
+        function updateUI(data) {
             const carCount = data.carCount || 0;
             const maxCarCount = data.maxCarCount || 100;
             const morningCars = data.projectedMorningCars || 0;
             const afternoonCars = data.projectedAfternoonCars || 0;
-            
+
             // Calculate the percentage
             let percentage = (carCount / maxCarCount) * 100;
 
@@ -166,19 +162,19 @@
                 if (currentPercentage < finalPercentage) {
                     currentPercentage += incrementPercentage;
                 } else {
-                    currentPercentage = finalPercentage;  
+                    currentPercentage = finalPercentage;
                 }
 
                 if (currentMorningCount < finalMorningCars) {
                     currentMorningCount += incrementMorningCars;
                 } else {
-                    currentMorningCount = finalMorningCars;  
+                    currentMorningCount = finalMorningCars;
                 }
 
                 if (currentAfternoonCount < finalAfternoonCars) {
                     currentAfternoonCount += incrementAfternoonCars;
                 } else {
-                    currentAfternoonCount = finalAfternoonCars;  
+                    currentAfternoonCount = finalAfternoonCars;
                 }
 
                 // Continue the animation with a small delay between frames
