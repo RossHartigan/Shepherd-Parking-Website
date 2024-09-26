@@ -6,6 +6,17 @@
 
 <!-- Main container for centering the content -->
 <div class="container">
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/AboutUs">About Us</a></li>
+
+
+
+        </ul>
+    </nav>
+
     <h1>Car Count Dashboard</h1>
     <div class="stats">
         <h2>Current Car Count: <span id="carCountDisplay">Loading...</span></h2>
@@ -29,6 +40,30 @@
         margin: 0;
         padding: 0;
         background-color: #f4f4f4;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        text-align: center;
+    }
+
+    nav ul li {
+        display: inline;
+        padding: 14px 16px;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.2em;
+    }
+
+    nav ul li a:hover {
+        background-color: #111;
     }
 
     .container {
