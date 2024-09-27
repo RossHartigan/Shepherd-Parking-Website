@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Shepherd-Parking-Website")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1633f022e544673082c3d0acb6f7d8ea9a5e3d19")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed59192bfc30cbc7e7f378b8e29fdc554c7df932")]
 [assembly: System.Reflection.AssemblyProductAttribute("Shepherd-Parking-Website")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Shepherd-Parking-Website")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

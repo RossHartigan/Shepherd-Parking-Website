@@ -13,6 +13,54 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Adv_p\\Desktop\\VS Code\\Shepherd-Parking-Website\\Shepherd-Parking-Website\\wwwroot\\images\\SamGunHyde.jpg",
+      "PackagePath": "staticwebassets\\images\\SamGunHyde.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Adv_p\\Desktop\\VS Code\\Shepherd-Parking-Website\\Shepherd-Parking-Website\\wwwroot\\images\\SamJackHyde.jpg",
+      "PackagePath": "staticwebassets\\images\\SamJackHyde.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Adv_p\\Desktop\\VS Code\\Shepherd-Parking-Website\\Shepherd-Parking-Website\\wwwroot\\images\\SamRespectWomanHyde.jpg",
+      "PackagePath": "staticwebassets\\images\\SamRespectWomanHyde.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Adv_p\\Desktop\\VS Code\\Shepherd-Parking-Website\\Shepherd-Parking-Website\\wwwroot\\images\\SamShyHyde.jpg",
+      "PackagePath": "staticwebassets\\images\\SamShyHyde.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Adv_p\\Desktop\\VS Code\\Shepherd-Parking-Website\\Shepherd-Parking-Website\\wwwroot\\images\\SamTedHyde.jpg",
+      "PackagePath": "staticwebassets\\images\\SamTedHyde.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Adv_p\\Desktop\\VS Code\\Shepherd-Parking-Website\\Shepherd-Parking-Website\\wwwroot\\images\\Sam_Hyde-_The_Candyman_20240101033414_e000007_02.jpeg",
+      "PackagePath": "staticwebassets\\images\\Sam_Hyde-_The_Candyman_20240101033414_e000007_02.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\Adv_p\\Desktop\\VS Code\\Shepherd-Parking-Website\\Shepherd-Parking-Website\\wwwroot\\images\\Screenshot_20240926_110424_Shepherd Parking.jpg",
+      "PackagePath": "staticwebassets\\images\\Screenshot_20240926_110424_Shepherd Parking.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Adv_p\\Desktop\\VS Code\\Shepherd-Parking-Website\\Shepherd-Parking-Website\\wwwroot\\images\\Screenshot_20240926_110749_Shepherd Parking.jpg",
+      "PackagePath": "staticwebassets\\images\\Screenshot_20240926_110749_Shepherd Parking.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Adv_p\\Desktop\\VS Code\\Shepherd-Parking-Website\\Shepherd-Parking-Website\\wwwroot\\images\\Screenshot_20240926_110833_Shepherd Parking.jpg",
+      "PackagePath": "staticwebassets\\images\\Screenshot_20240926_110833_Shepherd Parking.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Adv_p\\Desktop\\VS Code\\Shepherd-Parking-Website\\Shepherd-Parking-Website\\wwwroot\\images\\Screenshot_20240926_111030_Shepherd Parking.jpg",
+      "PackagePath": "staticwebassets\\images\\Screenshot_20240926_111030_Shepherd Parking.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Adv_p\\Desktop\\VS Code\\Shepherd-Parking-Website\\Shepherd-Parking-Website\\wwwroot\\images\\Screenshot_20240926_111050_Shepherd Parking.jpg",
+      "PackagePath": "staticwebassets\\images\\Screenshot_20240926_111050_Shepherd Parking.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Adv_p\\Desktop\\VS Code\\Shepherd-Parking-Website\\Shepherd-Parking-Website\\wwwroot\\images\\Screenshot_20240926_111105_Shepherd Parking.jpg",
+      "PackagePath": "staticwebassets\\images\\Screenshot_20240926_111105_Shepherd Parking.jpg"
+    },
+    {
       "Id": "C:\\Users\\Adv_p\\Desktop\\VS Code\\Shepherd-Parking-Website\\Shepherd-Parking-Website\\wwwroot\\js\\firebase-init.js",
       "PackagePath": "staticwebassets\\js\\firebase-init.js"
     },
